@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   dinner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 18:47:18 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/10 20:46:44 by plopes-c         ###   ########.fr       */
+/*   Created: 2023/05/10 20:08:17 by plopes-c          #+#    #+#             */
+/*   Updated: 2023/05/10 20:17:58 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+void	actions(t_philo *philo)
 {
-	(void)argv;
-	if (check(argc, argv))
-		return (1);
-	return (0);
+	if (philo->status == DEAD)
+		philo_died(philo);
+	else if (philo->status == SLEEP)
+		philo_sleep(philo);
+	else if (philo->status == THINK)
+		philo_think(philo);
+	else if (philo->status == EAT)
+		philo_eat(philo);
+	else if (philo->status == FORK)
+		philo_take_fork(philo);
 }
