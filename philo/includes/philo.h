@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/10 20:46:33 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/11 03:34:56 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ void	philo_take_fork(t_philo	*philo);
 void	actions(t_philo *philo);
 void	philo_create(t_table *table);
 void	*dinner(void *arg);
+int		check_negative(int num);
+int		check_digit(char *str);
 int		check(int argc, char **argv);
+int		ft_atoi(const char *nptr);
+int		ft_isdigit(int c);
 
 
 

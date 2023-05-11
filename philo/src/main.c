@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:18 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/10 20:46:44 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/11 03:27:31 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(int argc, char *argv[])
 {
-	(void)argv;
 	if (check(argc, argv))
 		return (1);
 	return (0);
