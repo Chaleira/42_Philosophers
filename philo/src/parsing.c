@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:29:00 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/11 03:51:14 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:02:54 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_digit(char *str)
 	return (0);
 }
 
-int	check(int argc, char **argv)
+int	check(int argc, char **argv, t_table *table)
 {
 	int	i;
 
@@ -52,5 +52,6 @@ int	check(int argc, char **argv)
 			return (1);
 		i++;
 	}
+	set_table(table, argv);
 	return (0);
 }

@@ -6,33 +6,28 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:54:27 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/10 20:07:04 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:18:36 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philo_died(t_philo	*philo)
+void	actions(t_philo *philo)
 {
-	printf("%i died\n", philo->philo_id);
-}
+	struct timeval tv;
+	static long int ms;
 
-void	philo_sleep(t_philo *philo)
-{
-	printf("%i is sleeping\n", philo->philo_id);
-}
-
-void	philo_think(t_philo	*philo)
-{
-	printf("%i is thinking\n", philo->philo_id);
-}
-
-void	philo_eat(t_philo	*philo)
-{
-	printf("%i is eating\n", philo->philo_id);
-}
-
-void	philo_take_fork(t_philo	*philo)
-{
-	printf("%i has taken a fork\n", philo->philo_id);
+	gettimeofday(&tv, NULL);
+	ms = tv.tv_usec / 1000;
+	printf("%ld ", ms);
+	if (philo->status == DEAD)
+		printf("%i died\n", philo->philo_id);
+	else if (philo->status == SLEEP)
+		printf("%i is sleeping\n", philo->philo_id);
+	else if (philo->status == THINK)
+		printf("%i is thinking\n", philo->philo_id);
+	else if (philo->status == EAT)
+		printf("%i is eating\n", philo->philo_id);
+	else if (philo->status == FORK)
+		printf("%i has taken a fork\n", philo->philo_id);
 }

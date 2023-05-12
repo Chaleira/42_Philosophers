@@ -6,13 +6,13 @@
 #    By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/09 18:40:16 by plopes-c          #+#    #+#              #
-#    Updated: 2023/05/11 03:22:05 by plopes-c         ###   ########.fr        #
+#    Updated: 2023/05/12 11:13:38 by plopes-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRCS =	./src/*.c
+SRCS =	src/*.c src/*/*.c
 
 OBJS = $(SRCS:.c=.o)
 

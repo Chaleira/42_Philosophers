@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/11 03:34:56 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:08:29 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <sys/time.h>
 
 # define HERE write(1, "HERE\n", 5)
 # define THERE write(1, "THERE\n", 6)
@@ -34,7 +35,7 @@ typedef struct s_philo
 	struct s_table	*table;
 	int				status;
 	int				philo_id;
-	pthread_t		tread;
+	pthread_t		thread;
 
 }				t_philo;
 
@@ -44,8 +45,8 @@ typedef struct s_table
 	t_ulong			forks_num;
 	t_ulong			philos_num;
 	t_ulong			time_to_die;
-	t_ulong			time_to_sleep;
 	t_ulong			time_to_eat;
+	t_ulong			time_to_sleep;
 	t_ulong			dinner_times;
 
 }				t_table;
@@ -57,20 +58,20 @@ typedef struct s_list
 
 }				t_list;
 
-void	philo_died(t_philo	*philo);
-void	philo_sleep(t_philo *philo);
-void	philo_think(t_philo	*philo);
-void	philo_eat(t_philo	*philo);
-void	philo_take_fork(t_philo	*philo);
 void	actions(t_philo *philo);
-void	philo_create(t_table *table);
-void	*dinner(void *arg);
+
+int		check(int argc, char **argv, t_table *table);
 int		check_negative(int num);
 int		check_digit(char *str);
-int		check(int argc, char **argv);
+
+int		philo_create(t_table *table);
+void	set_table(t_table *table, char **argv);
+void	philos(t_table *table);
+
+void	*dinner(void *arg);
+
 int		ft_atoi(const char *nptr);
-int		ft_isdigit(int c);
-
-
+void	*ft_calloc(size_t nmemb, size_t size);
+void	free_program(t_table *table);
 
 #endif

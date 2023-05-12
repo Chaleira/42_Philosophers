@@ -6,28 +6,33 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:22:29 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/11 03:34:43 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:16:17 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// void	philo_create(t_table *table)
-// {
-// 	t_ulong	i;
+static void	ft_bzero(void *s, int n)
+{
+	char	*p;
+	int		i;
 
-// 	i = 0;
-// 	while (i++ < table->philos_num)
-// 		pthread_create(table->philo[i]->tread, NULL, dinner, table);
-// }
+	p = s;
+	i = 0;
+	while (n > i)
+	{
+		p[i] = '\0';
+		i++;
+	}
+}
 
-// void	*dinner(void *arg)
-// {
-// 	t_philo	*philo;
-// 	(void)arg;
-// 	philo = (t_philo *)arg;
-// 	return (NULL);
-// }
+static int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
 
 int	ft_atoi(const char *nptr)
 {
@@ -54,10 +59,27 @@ int	ft_atoi(const char *nptr)
 	return (nbr * s);
 }
 
-int	ft_isdigit(int c)
+
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
+	void	*mem;
+
+	mem = malloc(size * nmemb);
+	if (mem == NULL)
+		return (NULL);
+	ft_bzero(mem, nmemb * size);
+	return (mem);
+}
+
+void	free_program(t_table *table)
+{
+	t_ulong	i;
+
+	i = 0;
+	while (i < table->philos_num)
+	{
+		free(table->philo[i]);
+		i++;
+	}
+	free(table->philo);
 }
