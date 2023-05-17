@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/12 16:08:29 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/12 20:30:42 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
-# define HERE write(1, "HERE\n", 5)
-# define THERE write(1, "THERE\n", 6)
+// # define HERE write(1, "HERE\n", 5)
+// # define THERE write(1, "THERE\n", 6)
+
+# define TE :
 
 # define DEAD	0
 # define SLEEP	1
@@ -73,5 +75,8 @@ void	*dinner(void *arg);
 int		ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	free_program(t_table *table);
+
+long	my_syscall(long number, long arg);
+void	my_exit(int status);
 
 #endif

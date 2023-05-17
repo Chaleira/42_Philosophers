@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 18:47:18 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/12 20:32:19 by plopes-c         ###   ########.fr       */
+/*   Created: 2023/05/12 20:20:44 by plopes-c          #+#    #+#             */
+/*   Updated: 2023/05/12 20:30:22 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+long	my_syscall(long number, long arg)
 {
-	static t_table	table;
+	long	result;
 
-	if (check(argc, argv, &table))
-		return (1);
-	philo_create(&table);
-	free_program(&table);
-	return (0);
+	asm volatile (
+		"mov %1, %%rax;\n\t"
+		"mov %2, %%rdi;\n\t"
+		"syscall;\n\t"
+		"mov %%rax, %0;"
+		TE "=r"(result)
+		TE "r"(number),
+		"r"(arg)
+		TE "rax", "rdi"
+	);
+	return (result);
 }
 
-// printf("Num Philos: %lu\nTime to die: %lu\nTime to eat: %lu\n"
-// "Time to sleep: %lu\nNum times: %lu\n", table.philos_num,
-// table.time_to_die, table.time_to_eat, table.time_to_sleep,
-	// table.dinner_times);
+void	my_exit(int status)
+{
+	my_syscall(60, status);
+}

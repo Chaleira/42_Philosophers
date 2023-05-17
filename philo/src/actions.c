@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:54:27 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/12 16:18:36 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/12 20:31:12 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	actions(t_philo *philo)
 {
-	struct timeval tv;
-	static long int ms;
+	struct timeval	tv;
+	static long int	ms;
 
 	gettimeofday(&tv, NULL);
 	ms = tv.tv_usec / 1000;
