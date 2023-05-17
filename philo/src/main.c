@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:18 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/12 20:32:19 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:47:10 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char *argv[])
 {
 	static t_table	table;
 
+	table.start_time = get_time();
 	if (check(argc, argv, &table))
 		return (1);
 	philo_create(&table);

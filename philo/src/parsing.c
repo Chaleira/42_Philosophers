@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:29:00 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/12 11:02:54 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/17 20:23:05 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_negative(int num)
 {
-	if (num == 0)
-		return (printf("Error\nNo value can be zero\n"));
+	// if (num == 0)
+	// 	return (printf("Error\nNo value can be zero\n"));
 	if (num < 0)
 		return (printf("Error\nCan't have negative numbers\n"));
 	return (0);

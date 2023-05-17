@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 20:20:44 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/17 15:28:14 by plopes-c         ###   ########.fr       */
+/*   Created: 2023/05/17 18:51:50 by plopes-c          #+#    #+#             */
+/*   Updated: 2023/05/17 18:52:05 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	my_syscall(long number, long arg)
+t_ulong	get_time(void)
 {
-	long	result;
+	struct timeval	time;
 
-	asm volatile (
-		"mov %1, %%rax;\n\t"
-		"mov %2, %%rdi;\n\t"
-		"syscall;\n\t"
-		"mov %%rax, %0;"
-		TE "=r"(result)
-		TE "r"(number),
-		"r"(arg)
-		TE "rax", "rdi"
-	);
-	return (result);
-}
-
-void	my_exit(int status)
-{
-	my_syscall(60, status);
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
