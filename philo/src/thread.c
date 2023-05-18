@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 09:43:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/17 21:40:40 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/18 22:42:23 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,4 @@ void	set_table(t_table *table, char **argv)
 	table->table_service = 1;
 	philos(table);
 	forks_init(table);
-}
-
-void	forks_init(t_table *table)
-{
-	t_ulong	i;
-
-	i = 0;
-	while (i <= table->forks_num)
-	{
-		pthread_mutex_init(&table->forks[i], NULL);
-		i++;
-	}
 }

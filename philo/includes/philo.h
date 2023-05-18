@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/17 21:34:24 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/18 23:32:13 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_philo
 {
 	struct s_table	*table;
 	int				status;
+	int				first_fork;
+	int				second_fork;
 	t_ulong			last_eat;
 	int				eat_times;
 	int				philo_id;
@@ -88,13 +90,17 @@ t_ulong	get_time(void);
 void	forks_init(t_table *table);
 
 void	philo_dead(t_philo *philo);
-void	philo_sleep(t_philo *philo);
-void	philo_think(t_philo *philo);
-void	philo_eat(t_philo *philo, int num, int num2);
-void	philo_fork(t_philo *philo, int num);
+int		philo_sleep(t_philo *philo);
+int		philo_think(t_philo *philo);
+int		philo_eat(t_philo *philo, int num, int num2);
+int		philo_fork(t_philo *philo, int num);
 int		check_dead(t_philo *philo);
 int		am_i_dead(t_philo *philo);
 void	watch_sleep(t_ulong time, t_philo *philo);
+void	grab_fork_1(t_philo *philo);
+void	grab_fork_2(t_philo *philo);
+int		table_service(t_philo *philo);
+
 
 
 #endif
