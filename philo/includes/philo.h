@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/18 23:32:13 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:25:00 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_philo
 	int				eat_times;
 	int				philo_id;
 	pthread_t		thread;
+	// TEST
+	int				forks_in_hand;
 
 }				t_philo;
 
@@ -56,6 +58,8 @@ typedef struct s_table
 	t_ulong			time_to_sleep;
 	int				dinner_times;
 	t_ulong			start_time;
+	// TEST
+	t_ulong			fork_in_table;
 	pthread_mutex_t	*forks;
 
 }				t_table;
@@ -72,7 +76,6 @@ int		check_negative(int num);
 int		check_digit(char *str);
 
 int		philo_create(t_table *table);
-int		philo_create_loop(t_table *table);
 void	set_table(t_table *table, char **argv);
 void	philos(t_table *table);
 
@@ -94,12 +97,15 @@ int		philo_sleep(t_philo *philo);
 int		philo_think(t_philo *philo);
 int		philo_eat(t_philo *philo, int num, int num2);
 int		philo_fork(t_philo *philo, int num);
-int		check_dead(t_philo *philo);
 int		am_i_dead(t_philo *philo);
 void	watch_sleep(t_ulong time, t_philo *philo);
-void	grab_fork_1(t_philo *philo);
-void	grab_fork_2(t_philo *philo);
+void	grab_fork_right_first(t_philo *philo);
+void	grab_fork_left_first(t_philo *philo);
 int		table_service(t_philo *philo);
+void	grab_fork(t_philo *philo);
+
+
+
 
 
 

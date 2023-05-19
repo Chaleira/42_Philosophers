@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 09:43:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/18 22:42:23 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:26:57 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	philos(t_table *table)
 		table->philo[i]->table = table;
 		table->philo[i]->philo_id = i + 1;
 		table->philo[i]->status = 1;
+		table->fork_in_table = table->forks_num;
 		i++;
 	}
 }
