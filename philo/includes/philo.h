@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/19 19:25:00 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/23 06:16:27 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
-# define HERE write(1, "HERE\n", 5)
-# define THERE write(1, "THERE\n", 6)
-
-# define TE :
+// # define HERE write(1, "HERE\n", 5)
+// # define THERE write(1, "THERE\n", 6)
 
 # define DEAD	0
 # define SLEEP	1
@@ -35,33 +33,29 @@ typedef unsigned long int	t_ulong;
 typedef struct s_philo
 {
 	struct s_table	*table;
+	pthread_t		thread;
+	t_ulong			last_eat;
 	int				status;
 	int				first_fork;
 	int				second_fork;
-	t_ulong			last_eat;
 	int				eat_times;
 	int				philo_id;
-	pthread_t		thread;
-	// TEST
 	int				forks_in_hand;
-
 }				t_philo;
 
 typedef struct s_table
 {
+	pthread_mutex_t	*forks;
 	struct s_philo	**philo;
+	t_ulong			start_time;
 	t_ulong			forks_num;
-	int				table_service;
 	t_ulong			philos_num;
 	t_ulong			time_to_die;
 	t_ulong			time_to_eat;
 	t_ulong			time_to_sleep;
+	int				table_service;
 	int				dinner_times;
-	t_ulong			start_time;
-	// TEST
-	t_ulong			fork_in_table;
-	pthread_mutex_t	*forks;
-
+	int				forks_on_table;
 }				t_table;
 
 typedef struct s_list
@@ -85,10 +79,6 @@ int		ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	free_program(t_table *table);
 
-long	my_syscall(long number, long arg);
-void	my_exit(int status);
-
-// void	turns(t_philo *philo);
 t_ulong	get_time(void);
 void	forks_init(t_table *table);
 
@@ -103,10 +93,5 @@ void	grab_fork_right_first(t_philo *philo);
 void	grab_fork_left_first(t_philo *philo);
 int		table_service(t_philo *philo);
 void	grab_fork(t_philo *philo);
-
-
-
-
-
 
 #endif

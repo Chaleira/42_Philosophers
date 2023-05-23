@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:22:29 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/19 12:51:55 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/23 04:31:09 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,12 @@ void	free_program(t_table *table)
 		free(table->philo[i]);
 		i++;
 	}
-	i = table->forks_num + 1;
-	while (i > 0)
+	i = 0;
+	while (i <= table->forks_num + 1)
 	{
 		pthread_mutex_destroy(&table->forks[i]);
-		i--;
+		i++;
 	}
+	free(table->forks);
 	free(table->philo);
 }

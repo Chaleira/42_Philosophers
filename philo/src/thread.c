@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 09:43:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/19 18:26:57 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/23 04:43:23 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	philo_create(t_table *table)
 	i = 0;
 	while (i < table->philos_num)
 	{
-		if (pthread_join(table->philo[i]->thread, NULL))
+		if (pthread_join(table->philo[i]->thread, 0))
 			return (printf("Error\nCouldn't join philos\n"));
 		i++;
 	}
@@ -47,7 +47,6 @@ void	philos(t_table *table)
 		table->philo[i]->table = table;
 		table->philo[i]->philo_id = i + 1;
 		table->philo[i]->status = 1;
-		table->fork_in_table = table->forks_num;
 		i++;
 	}
 }
@@ -64,6 +63,7 @@ void	set_table(t_table *table, char **argv)
 	if (!argv[5])
 		table->dinner_times = -1;
 	table->table_service = 1;
+	table->forks_on_table = table->philos_num;
 	philos(table);
 	forks_init(table);
 }

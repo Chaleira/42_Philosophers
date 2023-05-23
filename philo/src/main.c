@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:18 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/19 18:45:31 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/23 04:24:11 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ int	main(int argc, char *argv[])
 	table.start_time = get_time();
 	if (check(argc, argv, &table))
 		return (1);
+	if (argv[1][0] == '1')
+	{
+		printf("%.5ld %i has taken a fork\n", get_time() - table.start_time, 1);
+		usleep(table.time_to_die * 1000);
+		printf("%.5ld %i died\n", get_time() - table.start_time, 1);
+		return (0);
+	}
 	philo_create(&table);
 	free_program(&table);
 	return (0);
 }
-
-// printf("Num Philos: %lu\nTime to die: %lu\nTime to eat: %lu\n"
-// "Time to sleep: %lu\nNum times: %lu\n", table.philos_num,
-// table.time_to_die, table.time_to_eat, table.time_to_sleep,
-	// table.dinner_times);

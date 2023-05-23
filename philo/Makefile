@@ -6,7 +6,7 @@
 #    By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/09 18:40:16 by plopes-c          #+#    #+#              #
-#    Updated: 2023/05/19 19:44:43 by plopes-c         ###   ########.fr        #
+#    Updated: 2023/05/23 06:16:02 by plopes-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,12 @@ $(NAME):		$(SRCS)
 				$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 run:			all
-				./philo 5 450 200 800
+				# ./philo 1 800 200 200 #morte
+					./philo 4 310 200 100 #morte
+					# ./philo 5 800 200 200 #vive
+					# ./philo 5 800 200 200 7 #vive
+					# ./philo 4 410 200 200 #vive
+				
 
 clean:			
 				@$(RM) $(OBJS)
