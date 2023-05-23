@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:42:11 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/23 06:10:15 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/23 22:55:13 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	philo_think(t_philo *philo)
 	philo->status = THINK;
 	printf("%.5ld %i is thinking\n", get_time() - philo->table->start_time,
 		philo->philo_id);
-	usleep(150);
 	return (0);
 }
 
@@ -50,38 +49,33 @@ int	philo_eat(t_philo *philo, int num, int num2)
 	printf("%.5ld %i is eating\n", get_time() - philo->table->start_time,
 		philo->philo_id);
 	philo->eat_times++;
-	philo->forks_in_hand = 0;
 	philo->last_eat = get_time();
 	watch_sleep(philo->table->time_to_eat, philo);
-	pthread_mutex_lock(&philo->table->forks[philo->table->forks_num + 1]);
-	philo->table->forks_on_table += 2;
-	pthread_mutex_unlock(&philo->table->forks[philo->table->forks_num + 1]);
-	pthread_mutex_unlock(&philo->table->forks[num]);
-	pthread_mutex_unlock(&philo->table->forks[num2]);
+	pthread_mutex_lock(&philo->table->forks[num]->forks);
+	pthread_mutex_lock(&philo->table->forks[num2]->forks);
+	philo->table->forks[num]->key = 1;
+	philo->table->forks[num2]->key = 1;
+	pthread_mutex_unlock(&philo->table->forks[num]->forks);
+	pthread_mutex_unlock(&philo->table->forks[num2]->forks);
 	return (0);
 }
 
 int	philo_fork(t_philo *philo, int num)
 {
-	pthread_mutex_lock(&philo->table->forks[philo->table->forks_num + 1]);
-	while (philo->table->forks_on_table == 0)
+	while (!check_fork(num, philo))
 	{
-		pthread_mutex_unlock(&philo->table->forks[philo->table->forks_num + 1]);
-		if (table_service(philo) || am_i_dead(philo))
+		if (am_i_dead(philo))
 			return (1);
-		usleep(10);
-		pthread_mutex_lock(&philo->table->forks[philo->table->forks_num + 1]);
+		if (philo->status != THINK)
+			philo_think(philo);
 	}
-	philo->table->forks_on_table--;
-	pthread_mutex_unlock(&philo->table->forks[philo->table->forks_num + 1]);
-	pthread_mutex_lock(&philo->table->forks[num]);
+	pthread_mutex_lock(&philo->table->forks[num]->forks);
+	philo->table->forks[num]->key = 0;
+	pthread_mutex_unlock(&philo->table->forks[num]->forks);
+	// printf("philo: %i  fork: %i\n", philo->philo_id, num);
 	if (!philo->status || table_service(philo) || am_i_dead(philo))
-	{
-		pthread_mutex_unlock(&philo->table->forks[num]);
 		return (1);
-	}
 	printf("%.5ld %i has taken a fork\n", get_time() - philo->table->start_time,
 		philo->philo_id);
-	philo->forks_in_hand++;
 	return (0);
 }

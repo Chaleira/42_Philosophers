@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/23 06:16:27 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/23 22:35:23 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define SLEEP	1
 # define THINK	2
 # define EAT	3
-# define FORK	4
 
 typedef unsigned long int	t_ulong;
 
@@ -41,11 +40,19 @@ typedef struct s_philo
 	int				eat_times;
 	int				philo_id;
 	int				forks_in_hand;
+
 }				t_philo;
+
+typedef	struct s_fork
+{
+	int	key;
+	pthread_mutex_t	forks;
+
+}				t_fork;
 
 typedef struct s_table
 {
-	pthread_mutex_t	*forks;
+	t_fork			**forks;
 	struct s_philo	**philo;
 	t_ulong			start_time;
 	t_ulong			forks_num;
@@ -56,6 +63,7 @@ typedef struct s_table
 	int				table_service;
 	int				dinner_times;
 	int				forks_on_table;
+
 }				t_table;
 
 typedef struct s_list
@@ -89,9 +97,10 @@ int		philo_eat(t_philo *philo, int num, int num2);
 int		philo_fork(t_philo *philo, int num);
 int		am_i_dead(t_philo *philo);
 void	watch_sleep(t_ulong time, t_philo *philo);
-void	grab_fork_right_first(t_philo *philo);
-void	grab_fork_left_first(t_philo *philo);
+void	set_fork_right_first(t_philo *philo);
+void	set_fork_left_first(t_philo *philo);
 int		table_service(t_philo *philo);
-void	grab_fork(t_philo *philo);
+void	set_forks(t_philo *philo);
+int		check_fork(int num, t_philo *philo);
 
 #endif

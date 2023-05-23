@@ -6,7 +6,7 @@
 #    By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/09 18:40:16 by plopes-c          #+#    #+#              #
-#    Updated: 2023/05/23 06:16:02 by plopes-c         ###   ########.fr        #
+#    Updated: 2023/05/23 22:55:26 by plopes-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,11 @@ $(NAME):		$(SRCS)
 
 run:			all
 				# ./philo 1 800 200 200 #morte
-					./philo 4 310 200 100 #morte
-					# ./philo 5 800 200 200 #vive
+					# ./philo 4 310 200 100 #morte
+					# ./philo 5 800 200 200 50 #vive
 					# ./philo 5 800 200 200 7 #vive
-					# ./philo 4 410 200 200 #vive
+					# ./philo 4 410 200 200 2 #vive
+					./philo 200 800 200 200 2 #vive
 				
 
 clean:			

@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 09:43:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/23 04:43:23 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/23 22:08:32 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	philos(t_table *table)
 	t_ulong		i;
 
 	table->philo = ft_calloc(table->philos_num, sizeof(t_philo *));
-	table->forks = ft_calloc(table->forks_num + 1, sizeof(pthread_mutex_t));
+	table->forks = ft_calloc(table->forks_num + 1, sizeof(t_fork *));
 	i = 0;
 	while (i < table->philos_num)
 	{
@@ -47,6 +47,14 @@ void	philos(t_table *table)
 		table->philo[i]->table = table;
 		table->philo[i]->philo_id = i + 1;
 		table->philo[i]->status = 1;
+		set_forks(table->philo[i]);
+		i++;
+	}
+	i = 0;
+	while (i <= table->forks_num)
+	{
+		table->forks[i] = ft_calloc(1, sizeof(t_fork));
+		table->forks[i]->key = 1;
 		i++;
 	}
 }
