@@ -6,7 +6,7 @@
 #    By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/09 18:40:16 by plopes-c          #+#    #+#              #
-#    Updated: 2023/05/23 22:55:26 by plopes-c         ###   ########.fr        #
+#    Updated: 2023/05/23 23:46:42 by plopes-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJS = $(SRCS:.c=.o)
 
 INCLUDES = -I includes
 
-CFLAGS = -Wall -Wextra -Werror -pthread $(INCLUDES) -g -fsanitize=thread 
+CFLAGS = -Wall -Wextra -Werror -pthread $(INCLUDES) #-g -fsanitize=thread 
 
 RM = rm -fr
 
@@ -32,8 +32,8 @@ run:			all
 					# ./philo 4 310 200 100 #morte
 					# ./philo 5 800 200 200 50 #vive
 					# ./philo 5 800 200 200 7 #vive
-					# ./philo 4 410 200 200 2 #vive
-					./philo 200 800 200 200 2 #vive
+					# ./philo 4 410 200 200 50 #vive
+					./philo 200 800 200 200 5 #vive
 				
 
 clean:			

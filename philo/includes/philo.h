@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/23 22:35:23 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/23 23:48:12 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef struct s_philo
 
 }				t_philo;
 
-typedef	struct s_fork
+typedef struct s_fork
 {
-	int	key;
+	int				key;
 	pthread_mutex_t	forks;
 
 }				t_fork;

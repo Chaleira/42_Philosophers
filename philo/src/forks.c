@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 19:53:34 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/23 22:57:26 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/23 23:42:51 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,11 @@ void	forks_init(t_table *table)
 	}
 }
 
-void	set_fork_right_first(t_philo *philo)
+void	set_forks(t_philo *philo)
 {
 	philo->first_fork = philo->philo_id - 1;
 	philo->second_fork = philo->philo_id - 2
 		+ (philo->philo_id == 1) * philo->table->philos_num;
-}
-
-void	set_fork_left_first(t_philo *philo)
-{
-	philo->first_fork = philo->philo_id - 2
-		+ (philo->philo_id == 1) * philo->table->philos_num;
-	philo->second_fork = philo->philo_id - 1;
-}
-
-void	set_forks(t_philo *philo)
-{
-	if (!(philo->philo_id % 2))
-		set_fork_left_first(philo);
-	else
-		set_fork_right_first(philo);
 }
 
 int	check_fork(int num, t_philo *philo)
@@ -55,6 +40,5 @@ int	check_fork(int num, t_philo *philo)
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->table->forks[num]->forks);
-	usleep(1000);
 	return (0);
 }

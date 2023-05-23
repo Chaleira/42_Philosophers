@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:42:11 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/23 22:55:13 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/23 23:47:43 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ int	philo_fork(t_philo *philo, int num)
 			return (1);
 		if (philo->status != THINK)
 			philo_think(philo);
+		usleep(1000);
 	}
 	pthread_mutex_lock(&philo->table->forks[num]->forks);
 	philo->table->forks[num]->key = 0;
 	pthread_mutex_unlock(&philo->table->forks[num]->forks);
-	// printf("philo: %i  fork: %i\n", philo->philo_id, num);
 	if (!philo->status || table_service(philo) || am_i_dead(philo))
 		return (1);
 	printf("%.5ld %i has taken a fork\n", get_time() - philo->table->start_time,
