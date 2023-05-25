@@ -6,35 +6,27 @@
 #    By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/09 18:40:16 by plopes-c          #+#    #+#              #
-#    Updated: 2023/05/23 23:46:42 by plopes-c         ###   ########.fr        #
+#    Updated: 2023/05/25 15:04:44 by plopes-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRCS =	src/*.c src/*/*.c
+SRCS =	src/actions.c src/dinner.c src/forks.c src/main.c src/parsing.c \
+		src/thread.c src/utils/utils2.c src/utils/utils.c
 
 OBJS = $(SRCS:.c=.o)
 
 INCLUDES = -I includes
 
-CFLAGS = -Wall -Wextra -Werror -pthread $(INCLUDES) #-g -fsanitize=thread 
+CFLAGS = -Wall -Wextra -Werror -pthread $(INCLUDES)
 
 RM = rm -fr
 
 all : $(NAME)
 
-$(NAME):		$(SRCS)
-				$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
-
-run:			all
-				# ./philo 1 800 200 200 #morte
-					# ./philo 4 310 200 100 #morte
-					# ./philo 5 800 200 200 50 #vive
-					# ./philo 5 800 200 200 7 #vive
-					# ./philo 4 410 200 200 50 #vive
-					./philo 200 800 200 200 5 #vive
-				
+$(NAME):		$(OBJS)
+				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:			
 				@$(RM) $(OBJS)
