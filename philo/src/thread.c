@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 09:43:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/23 22:08:32 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:47:29 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	set_table(t_table *table, char **argv)
 	if (!argv[5])
 		table->dinner_times = -1;
 	table->table_service = 1;
-	table->forks_on_table = table->philos_num;
 	philos(table);
 	forks_init(table);
 }

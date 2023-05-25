@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:47:15 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/25 15:31:45 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:47:47 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/time.h>
-
-// # define HERE write(1, "HERE\n", 5)
-// # define THERE write(1, "THERE\n", 6)
 
 # define DEAD	0
 # define SLEEP	1
@@ -51,8 +48,8 @@ typedef struct s_fork
 
 typedef struct s_table
 {
-	struct s_philo	**philo;
 	t_fork			**forks;
+	struct s_philo	**philo;
 	t_ulong			start_time;
 	t_ulong			forks_num;
 	t_ulong			philos_num;
@@ -90,6 +87,7 @@ void	free_program(t_table *table);
 
 t_ulong	get_time(void);
 void	forks_init(t_table *table);
+int		philo_fork(t_philo *philo, int num);
 void	set_forks(t_philo *philo);
 int		check_fork(int num, t_philo *philo);
 
@@ -97,6 +95,5 @@ void	philo_dead(t_philo *philo);
 int		philo_sleep(t_philo *philo);
 int		philo_think(t_philo *philo);
 int		philo_eat(t_philo *philo, int num, int num2);
-int		philo_fork(t_philo *philo, int num);
 
 #endif
