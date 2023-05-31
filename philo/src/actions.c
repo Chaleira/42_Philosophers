@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:42:11 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/25 15:19:59 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/31 14:47:42 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	philo_sleep(t_philo *philo)
 	printf("%.5ld %i is sleeping\n", get_time() - philo->table->start_time,
 		philo->philo_id);
 	watch_sleep(philo->table->time_to_sleep, philo);
-	usleep(1000);
 	return (0);
 }
 
