@@ -6,7 +6,7 @@
 #    By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/09 18:40:16 by plopes-c          #+#    #+#              #
-#    Updated: 2023/05/25 15:04:44 by plopes-c         ###   ########.fr        #
+#    Updated: 2023/05/31 17:07:36 by plopes-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS = $(SRCS:.c=.o)
 
 INCLUDES = -I includes
 
-CFLAGS = -Wall -Wextra -Werror -pthread $(INCLUDES)
+CFLAGS = -Wall -Wextra -Werror -pthread -g $(INCLUDES)
 
 RM = rm -fr
 

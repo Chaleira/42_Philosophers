@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:08:17 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/23 23:29:21 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:06:19 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	watch_sleep(t_ulong time, t_philo *philo)
 	start = get_time();
 	while (((get_time()) - start) < time
 		&& !am_i_dead(philo) && !table_service(philo))
-		usleep(1000);
+		usleep(150);
 }
 
 static int	dinner_aux(t_philo *philo)
@@ -69,7 +69,7 @@ void	*dinner(void *arg)
 	philo = (t_philo *)arg;
 	philo->last_eat = get_time();
 	if ((philo->philo_id % 2))
-		usleep(2000);
+		usleep(500);
 	while (philo->status && philo->eat_times != philo->table->dinner_times)
 	{
 		if (dinner_aux(philo))

@@ -6,7 +6,7 @@
 /*   By: plopes-c <plopes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:42:11 by plopes-c          #+#    #+#             */
-/*   Updated: 2023/05/31 14:47:42 by plopes-c         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:05:13 by plopes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,20 @@ int	philo_eat(t_philo *philo, int num, int num2)
 	philo->eat_times++;
 	philo->last_eat = get_time();
 	watch_sleep(philo->table->time_to_eat, philo);
-	pthread_mutex_lock(&philo->table->forks[num]->forks);
-	pthread_mutex_lock(&philo->table->forks[num2]->forks);
-	philo->table->forks[num]->key = 1;
-	philo->table->forks[num2]->key = 1;
+	if (philo->philo_id % 2)
+	{
+		pthread_mutex_lock(&philo->table->forks[num]->forks);
+		pthread_mutex_lock(&philo->table->forks[num2]->forks);
+		philo->table->forks[num]->key = 1;
+		philo->table->forks[num2]->key = 1;
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->table->forks[num2]->forks);
+		pthread_mutex_lock(&philo->table->forks[num]->forks);
+		philo->table->forks[num]->key = 1;
+		philo->table->forks[num2]->key = 1;
+	}
 	pthread_mutex_unlock(&philo->table->forks[num]->forks);
 	pthread_mutex_unlock(&philo->table->forks[num2]->forks);
 	return (0);
@@ -68,7 +78,7 @@ int	philo_fork(t_philo *philo, int num)
 			return (1);
 		if (philo->status != THINK)
 			philo_think(philo);
-		usleep(1000);
+		usleep(150);
 	}
 	pthread_mutex_lock(&philo->table->forks[num]->forks);
 	philo->table->forks[num]->key = 0;
